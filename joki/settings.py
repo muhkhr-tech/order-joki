@@ -31,6 +31,16 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 # Application definition
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
+CORS_ALLOWED_ORIGINS = [
+    "https://web-production-2f954.up.railway.app/",
+    # Add any other allowed origins as needed
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://web-production-2f954.up.railway.app/",
+    # Add any other allowed origins as needed
+]
+
 INSTALLED_APPS = [
     'customer.apps.CustomerConfig',
     "whitenoise.runserver_nostatic",
