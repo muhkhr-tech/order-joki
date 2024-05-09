@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<p>Terimakasih sudah menghubungi JOKI JASA KURIR..</p>
+
+<div>✍🏻Format Pemesanan ✍🏻</div>
+<div>Nama Pengirim : {{sender_name}}</div>
+<div>📌Alamat lengkap : {{sender_address}}</div>
+<div>📱No HP : {{sender_phone}}</div>
+<div>🛍️Barang yg diantar/dipesan : Makanan</div>
+
+<div>💵Total belanja: </div>
+<div>Nama Penerima : {{recepient_name}}</div>
+<div>📌Alamat lengkap : {{recepient_address}}</div>
+<div>📱 No HP  : {{recepient_phone}}</div>
+
+<p>Mohon di isi dengan jelas ya kak😊</p>
+
+<a style="display: inline-block;box-sizing: border-box; text-align: center;" href="https://api.whatsapp.com/send?phone=6285238147429&text=Terimakasih sudah menghubungi JOKI JASA KURIR..%0A%0A
+
+✍🏻Format Pemesanan ✍🏻%0A
+Nama Pengirim : {{sender_name}}%0A
+📌Alamat lengkap : {{sender_address}}%0A
+📱No HP : {{sender_phone}}%0A
+🛍️Barang yg diantar/dipesan : makanan%0A%0A
+
+💵Total belanja: %0A
+Nama Penerima : {{recepient_name}}%0A
+📌Alamat lengkap : {{recepient_address}}%0A
+📱 No HP  :  {{recepient_phone}}%0A%0A
+
+
+Mohon di isi dengan jelas ya kak😊">Pesan JOKI</a>
+{% endblock %}

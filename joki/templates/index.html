@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+    <form action="" method="post">
+        {% csrf_token %}
+        <h2>Pemesanan JOKI</h2>
+
+        <p>Isi data pengirim</p>
+
+        <div>Nama Pengirim : <input type="text" name="sender_name" {% if request.POST.sender_name %} value="{{request.POST.sender_name}}" {% else %} value="Mira" {% endif %} required /></div>
+        <div>No HP  :
+            <input type="text" name="sender_phone" {% if request.POST.sender_name %} value="{{request.POST.sender_phone}}" {% else %} value="6281938902460" {% endif %} required placeholder="62"/>
+        </div>
+        <div>Alamat lengkap : <textarea name="sender_address" cols="100"
+                rows="3">Jl. Haji Na'im Perumahan Bumi Matarm Indah, Jempong Baru, Sekarbela, Mataram</textarea></div>
+
+        <p>Pilih atau Isi data penerima</p>
+        <div>
+            <select onchange="chooseCustomer(this)" id="customerFilter">
+                <option value="" selected disabled>Pilih Pelanggan</option>
+                {% for customer in customers %}
+                <option value="{{customer.slug}}">{{customer.slug}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        {% if customer %}
+        <div>Nama Penerima : <input type="text" name="recepient_name" value="{{customer.name}}" required /></div>
+        <div>No HP : <input value="{{customer.phone}}" type="text" name="recepient_phone" required placeholder="62"/></div>
+        <div>Alamat lengkap : <textarea name="recepient_address" cols="100" rows="3">{{customer.address}}</textarea></div>
+        {% else %}
+        <div>Nama Penerima : <input type="text" name="recepient_name" value="{{request.POST.recepient_name}}" required /></div>
+        <div>No HP : <input value="{{request.POST.recepient_phone}}" type="text" name="recepient_phone" required placeholder="62"/></div>
+        <div>Alamat lengkap : <textarea name="recepient_address" cols="100" rows="3">{{request.POST.recepient_address}}</textarea></div>
+        {% endif %}
+
+        <button type="submit" id="button">Berikutnya</button>
+    </form>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+    <script>
+        const params = new URLSearchParams(location.search)
+        const customerFilter = document.getElementById('customerFilter')
+
+        const chooseCustomer = (e) => {
+            params.set('customer', e.value)
+
+            location.search = params
+        }
+
+        if (params.has('customer')) {
+            customerFilter.value = params.get('customer')
+        }
+    </script>
+{% endblock %}
