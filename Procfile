@@ -1,1 +1,1 @@
-web: python manage.py migrate && gunicorn joki.wsg
+web: python manage.py migrate && gunicorn joki.wsgi
